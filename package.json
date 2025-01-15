@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "scripts": {
         "dev": "next dev",
@@ -11,32 +10,3 @@
         "react-dom": "^19.0.0"
     }
 }
-=======
-<<<<<<< HEAD
-{
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start"
-    },
-    "dependencies": {
-        "next": "^15.1.4",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
-    }
-}
-=======
-{
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start"
-    },
-    "dependencies": {
-        "next": "^15.1.4",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
-    }
-}
->>>>>>> 636f323 (Initial commit)
->>>>>>> 034ba87 (Initial commit)
