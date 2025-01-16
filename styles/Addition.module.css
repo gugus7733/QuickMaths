@@ -1,0 +1,57 @@
+.container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: var(--text-color);
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  .message {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+  }
+  

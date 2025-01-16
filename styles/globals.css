@@ -8,4 +8,9 @@ body {
   a:hover {
     color: #ff5722;
   }
-  
+  :root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --accent-color: #4caf50;
+    --error-color: #ff5252;
+}
