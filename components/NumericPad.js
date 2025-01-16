@@ -1,29 +1,32 @@
 import styles from "../styles/NumericPad.module.css";
 
-export default function NumericPad({ onInput, onClear, onSubmit }) {
-  const numbers = Array.from({ length: 10 }, (_, i) => i); // [0, 1, 2, ..., 9]
-
-  return (
-    <div className={styles.padContainer}>
-      <div className={styles.numbers}>
-        {numbers.map((num) => (
-          <button
-            key={num}
-            className={styles.numberButton}
-            onClick={() => onInput(num)}
-          >
-            {num}
+export default function NumericPad({ onInput, onClear, onSubmit, onBackspace }) {
+    const numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3]; // Disposition classique
+  
+    return (
+      <div className={styles.padContainer}>
+        <div className={styles.numbers}>
+          {numbers.map((num) => (
+            <button
+              key={num}
+              className={styles.numberButton}
+              onClick={() => onInput(num)}
+            >
+              {num}
+            </button>
+          ))}
+          {/* Dernière ligne : 0, Retour (Effacer), Valider */}
+          <button className={styles.numberButton} onClick={() => onInput(0)}>
+            0
           </button>
-        ))}
+          <button className={styles.backspaceButton} onClick={onBackspace}>
+            ←
+          </button>
+          <button className={styles.validateButton} onClick={onSubmit}>
+            ✔
+          </button>
+        </div>
       </div>
-      <div className={styles.actions}>
-        <button className={styles.actionButton} onClick={onClear}>
-          Effacer
-        </button>
-        <button className={styles.actionButton} onClick={onSubmit}>
-          Valider
-        </button>
-      </div>
-    </div>
-  );
-}
+    );
+  }
+

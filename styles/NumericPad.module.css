@@ -7,13 +7,15 @@
   
   .numbers {
     display: grid;
-    grid-template-columns: repeat(3, 60px);
+    grid-template-columns: repeat(3, 80px); /* 3 colonnes */
     gap: 10px;
   }
   
-  .numberButton {
-    width: 60px;
-    height: 60px;
+  .numberButton,
+  .backspaceButton,
+  .validateButton {
+    width: 80px;
+    height: 80px;
     background-color: #4caf50;
     color: #fff;
     font-size: 1.5rem;
@@ -23,29 +25,26 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
-  .numberButton:hover {
+  .numberButton:hover,
+  .backspaceButton:hover,
+  .validateButton:hover {
     background-color: #45a049;
     transform: scale(1.05);
   }
   
-  .actions {
-    display: flex;
-    gap: 20px;
+  .backspaceButton {
+    background-color: #808080;
   }
   
-  .actionButton {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #ff5252;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  .backspaceButton:hover {
+    background-color: #666666;
   }
   
-  .actionButton:hover {
-    background-color: #ff7b7b;
-    transform: scale(1.05);
+  .validateButton {
+    background-color: #2196f3;
+  }
+  
+  .validateButton:hover {
+    background-color: #1976d2;
   }
   

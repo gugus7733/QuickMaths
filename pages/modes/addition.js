@@ -21,6 +21,10 @@ export default function Addition() {
     setUserAnswer("");
   }
 
+  function handleBackspace() {
+    setUserAnswer((prev) => prev.slice(0, -1));
+  }
+
   function handleSubmit() {
     const correctAnswer = num1 + num2;
     if (parseInt(userAnswer) === correctAnswer) {
@@ -44,6 +48,7 @@ export default function Addition() {
         onInput={handleInput}
         onClear={handleClear}
         onSubmit={handleSubmit}
+        onBackspace={handleBackspace}
       />
       {message && <p className={styles.message}>{message}</p>}
       <BackButton />
