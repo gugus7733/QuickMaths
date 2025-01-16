@@ -1,28 +1,20 @@
 import React, { useState } from "react";
-import styles from "../../styles/Addition.module.css";
 import BackButton from "../../components/BackButton";
-import NumericPad from "../../components/NumericPad";
+import styles from "../../styles/RandomMultiplication.module.css";
 
-export default function Addition() {
+export default function RandomMultiplication() {
   const [num1, setNum1] = useState(generateRandomNumber());
   const [num2, setNum2] = useState(generateRandomNumber());
   const [userAnswer, setUserAnswer] = useState("");
   const [message, setMessage] = useState("");
 
   function generateRandomNumber() {
-    return Math.floor(Math.random() * 10) + 1;
+    return Math.floor(Math.random() * 10) + 1; // Génère un nombre entre 1 et 10
   }
 
-  function handleInput(value) {
-    setUserAnswer((prev) => prev + value.toString());
-  }
-
-  function handleClear() {
-    setUserAnswer("");
-  }
-
-  function handleSubmit() {
-    const correctAnswer = num1 + num2;
+  function handleSubmit(e) {
+    e.preventDefault();
+    const correctAnswer = num1 * num2;
     if (parseInt(userAnswer) === correctAnswer) {
       setMessage("Bonne réponse !");
     } else {
@@ -35,16 +27,22 @@ export default function Addition() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Mode Addition</h1>
+      <h1 className={styles.title}>Mode Multiplications</h1>
       <p className={styles.question}>
-        Combien font {num1} + {num2} ?
+        Combien font {num1} × {num2} ?
       </p>
-      <div className={styles.answer}>{userAnswer || "..."}</div>
-      <NumericPad
-        onInput={handleInput}
-        onClear={handleClear}
-        onSubmit={handleSubmit}
-      />
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="number"
+          value={userAnswer}
+          onChange={(e) => setUserAnswer(e.target.value)}
+          className={styles.input}
+          placeholder="Votre réponse"
+        />
+        <button type="submit" className={styles.button}>
+          Valider
+        </button>
+      </form>
       {message && <p className={styles.message}>{message}</p>}
       <BackButton />
     </div>

@@ -1,0 +1,26 @@
+.backButton {
+  background-color: #ff5252;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 30px; /* Pour le décaler en dessous du reste */
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  align-self: center; /* Centre horizontalement dans un conteneur flex */
+}
+  
+  .icon {
+    font-size: 1.8rem; /* Taille élégante pour l'icône */
+  }
+  
+  .backButton:hover {
+    background-color: #ff7b7b;
+    transform: scale(1.05);
+  }
+  
+  .backButton:active {
+    transform: scale(0.95);
+  }

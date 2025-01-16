@@ -1,0 +1,51 @@
+.padContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 10px;
+  }
+  
+  .numberButton {
+    width: 60px;
+    height: 60px;
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .numberButton:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+  .actions {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .actionButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff5252;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .actionButton:hover {
+    background-color: #ff7b7b;
+    transform: scale(1.05);
+  }
+  

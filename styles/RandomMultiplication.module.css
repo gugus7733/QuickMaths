@@ -1,14 +1,13 @@
 .container {
-  display: flex;
-  flex-direction: column; /* Arrange les éléments en colonne */
-  justify-content: center; /* Centrage vertical */
-  align-items: center; /* Centrage horizontal */
-  height: 100vh; /* Pleine hauteur */
-  background-color: #121212; /* Thème sombre */
-  color: #ffffff;
-  padding: 20px;
-}
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
+    color: #ffffff;
+    padding: 20px;
+  }
   
   .title {
     font-size: 2rem;
@@ -22,35 +21,41 @@
   
   .form {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
   }
   
   .input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid var(--accent-color);
+    width: 150px;
+    text-align: center;
+    border: 1px solid #4caf50;
     border-radius: 5px;
     background-color: #1e1e1e;
-    color: var(--text-color);
+    color: #ffffff;
   }
   
   .button {
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: var(--accent-color);
-    color: var(--text-color);
+    background-color: #4caf50;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
   .button:hover {
     background-color: #45a049;
+    transform: scale(1.05);
   }
   
   .message {
     margin-top: 20px;
     font-size: 1.2rem;
-    color: var(--accent-color);
+    color: #4caf50;
   }
+  

@@ -1,5 +1,6 @@
 import React, { useState } from "react"; // Ajout de l'import de useState
 import styles from "../../styles/Multiplication.module.css";
+import BackButton from "../../components/BackButton";
 
 export default function Multiplication() {
   const [viewMode, setViewMode] = useState("menu"); // 'menu', 'viewAll', 'train'
@@ -46,12 +47,6 @@ export default function Multiplication() {
 
     return (
       <div className={styles.allTables}>
-        <button
-          className={styles.backButton}
-          onClick={() => setViewMode("menu")}
-        >
-          Retour
-        </button>
         <h2 className={styles.title}>Tables de multiplication</h2>
         <div className={styles.tablesContainer}>
           {tables.map((num) => (
@@ -72,12 +67,6 @@ export default function Multiplication() {
   function renderTraining() {
     return (
       <div className={styles.training}>
-        <button
-          className={styles.backButton}
-          onClick={() => setViewMode("menu")}
-        >
-          Retour
-        </button>
         <h2 className={styles.title}>S'entraîner sur une table</h2>
         <label>
           Choisissez une table :
@@ -118,6 +107,7 @@ export default function Multiplication() {
       {viewMode === "menu" && renderMenu()}
       {viewMode === "viewAll" && renderAllTables()}
       {viewMode === "train" && renderTraining()}
+      <BackButton />
     </div>
   );
 }

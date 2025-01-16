@@ -9,7 +9,10 @@ export default function Home() {
         <button className={styles.menuButton}>Mode Addition</button>
       </Link>
       <Link href="/modes/multiplication">
-        <button className={styles.menuButton}>Mode Tables de Multiplication</button>
+        <button className={styles.menuButton}>Tables de Multiplication</button>
+      </Link>
+      <Link href="/modes/randomMultiplication">
+        <button className={styles.menuButton}>Mode Multiplications</button>
       </Link>
     </div>
   );

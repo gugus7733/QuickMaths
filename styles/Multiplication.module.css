@@ -1,8 +1,12 @@
 .container {
-    background-color: #121212;
+    display: flex;
+    flex-direction: column; /* Arrange les éléments en colonne */
+    justify-content: center; /* Centrage vertical */
+    align-items: center; /* Centrage horizontal */
+    height: 100vh; /* Pleine hauteur */
+    background-color: #121212; /* Thème sombre */
     color: #ffffff;
     padding: 20px;
-    text-align: center;
   }
   
   .title {
@@ -98,4 +102,3 @@
     font-size: 1.2rem;
     color: #4caf50;
   }
-  
