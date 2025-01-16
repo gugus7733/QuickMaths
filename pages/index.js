@@ -1,14 +1,16 @@
-import Link from 'next/link';
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
-    <div>
-      <h1>Bienvenue sur QuickMaths !</h1>
-      <p>Choisissez un mode pour commencer :</p>
-      <ul>
-        <li><Link href="/modes/addition">Mode Addition</Link></li>
-        <li><Link href="/modes/multiplication">Mode Multiplication</Link></li>
-      </ul>
+    <div className={styles.menuContainer}>
+      <h1 className={styles.menuTitle}>Bienvenue sur QuickMaths</h1>
+      <Link href="/modes/addition">
+        <button className={styles.menuButton}>Mode Addition</button>
+      </Link>
+      <Link href="/modes/multiplication">
+        <button className={styles.menuButton}>Mode Tables de Multiplication</button>
+      </Link>
     </div>
   );
 }
