@@ -1,12 +1,16 @@
 .container {
     display: flex;
-    flex-direction: column; /* Arrange les éléments en colonne */
-    justify-content: center; /* Centrage vertical */
-    align-items: center; /* Centrage horizontal */
-    height: 100vh; /* Pleine hauteur */
-    background-color: #121212; /* Thème sombre */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
     color: #ffffff;
     padding: 20px;
+  }
+  
+  .menu {
+    text-align: center;
   }
   
   .title {
@@ -16,38 +20,28 @@
   
   .button {
     background-color: #4caf50;
-    color: #fff;
+    color: #ffffff;
     border: none;
-    padding: 10px 20px;
+    padding: 15px 30px;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
   .button:hover {
     background-color: #45a049;
+    transform: scale(1.05);
   }
   
-  .backButton {
-    background-color: #ff5252;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .backButton:hover {
-    background-color: #ff7b7b;
+  .allTables {
+    text-align: center;
   }
   
   .tablesContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
   
@@ -55,7 +49,6 @@
     background-color: #1e1e1e;
     padding: 10px;
     border-radius: 5px;
-    width: 150px;
   }
   
   .tableTitle {
@@ -68,33 +61,29 @@
   }
   
   .training {
-    margin-top: 20px;
-  }
-  
-  .select {
-    margin: 10px;
-    padding: 5px;
-    font-size: 1rem;
-    border-radius: 5px;
-  }
-  
-  .form {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    text-align: center;
   }
   
-  .input {
-    padding: 10px;
-    font-size: 1rem;
-    width: 150px;
-    text-align: center;
-    border: 1px solid #4caf50;
-    border-radius: 5px;
-    background-color: #1e1e1e;
+  .question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .answer {
+    font-size: 2rem;
+    font-weight: bold;
     color: #ffffff;
+    background-color: #333333;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
   
   .message {
@@ -102,3 +91,4 @@
     font-size: 1.2rem;
     color: #4caf50;
   }
+  

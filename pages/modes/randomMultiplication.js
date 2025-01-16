@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BackButton from "../../components/BackButton";
 import styles from "../../styles/RandomMultiplication.module.css";
+import NumericPad from "../../components/NumericPad";
 
 export default function RandomMultiplication() {
   const [num1, setNum1] = useState(generateRandomNumber());
@@ -12,8 +13,19 @@ export default function RandomMultiplication() {
     return Math.floor(Math.random() * 10) + 1; // Génère un nombre entre 1 et 10
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleInput(value) {
+    setUserAnswer((prev) => prev + value.toString());
+  }
+
+  function handleClear() {
+    setUserAnswer("");
+  }
+
+  function handleBackspace() {
+    setUserAnswer((prev) => prev.slice(0, -1));
+  }
+
+  function handleSubmit() {
     const correctAnswer = num1 * num2;
     if (parseInt(userAnswer) === correctAnswer) {
       setMessage("Bonne réponse !");
@@ -31,18 +43,13 @@ export default function RandomMultiplication() {
       <p className={styles.question}>
         Combien font {num1} × {num2} ?
       </p>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          type="number"
-          value={userAnswer}
-          onChange={(e) => setUserAnswer(e.target.value)}
-          className={styles.input}
-          placeholder="Votre réponse"
-        />
-        <button type="submit" className={styles.button}>
-          Valider
-        </button>
-      </form>
+      <div className={styles.answer}>{userAnswer || "..."}</div>
+      <NumericPad
+        onInput={handleInput}
+        onClear={handleClear}
+        onSubmit={handleSubmit}
+        onBackspace={handleBackspace}
+      />
       {message && <p className={styles.message}>{message}</p>}
       <BackButton />
     </div>

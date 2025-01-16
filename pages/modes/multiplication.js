@@ -1,53 +1,43 @@
-import React, { useState } from "react"; // Ajout de l'import de useState
-import styles from "../../styles/Multiplication.module.css";
+import React, { useState } from "react";
 import BackButton from "../../components/BackButton";
+import NumericPad from "../../components/NumericPad";
+import styles from "../../styles/Multiplication.module.css";
 
 export default function Multiplication() {
-  const [viewMode, setViewMode] = useState("menu"); // 'menu', 'viewAll', 'train'
-
-  // Déplace les hooks pour l'entraînement ici
-  const [table, setTable] = useState(1);
-  const [number, setNumber] = useState(Math.floor(Math.random() * 10));
+  const [mode, setMode] = useState("menu"); // Modes possibles : "menu", "viewAll", "train"
+  const [table, setTable] = useState(generateRandomNumber(1, 9)); // Table aléatoire pour l'entraînement
+  const [number, setNumber] = useState(generateRandomNumber(0, 10));
   const [userAnswer, setUserAnswer] = useState("");
   const [message, setMessage] = useState("");
 
-  function checkAnswer(e) {
-    e.preventDefault();
-    if (parseInt(userAnswer) === table * number) {
-      setMessage("Bonne réponse !");
-    } else {
-      setMessage("Essaye encore !");
-    }
-    setNumber(Math.floor(Math.random() * 10));
-    setUserAnswer("");
+  // Fonction pour générer un nombre aléatoire
+  function generateRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  // Gestion des modes
   function renderMenu() {
     return (
       <div className={styles.menu}>
-        <h1 className={styles.title}>Mode Tables de Multiplication</h1>
-        <button
-          className={styles.button}
-          onClick={() => setViewMode("viewAll")}
-        >
+        <h1 className={styles.title}>Tables de Multiplication</h1>
+        <button className={styles.button} onClick={() => setMode("viewAll")}>
           Visualiser toutes les tables (0 à 15)
         </button>
-        <button
-          className={styles.button}
-          onClick={() => setViewMode("train")}
-        >
+        <button className={styles.button} onClick={() => setMode("train")}>
           S'entraîner sur les tables (1 à 9)
         </button>
+        <BackButton />
       </div>
     );
   }
 
   function renderAllTables() {
-    const tables = Array.from({ length: 16 }, (_, i) => i);
+    const tables = Array.from({ length: 16 }, (_, i) => i); // Tables de 0 à 15
 
     return (
       <div className={styles.allTables}>
-        <h2 className={styles.title}>Tables de multiplication</h2>
+
+        <h2 className={styles.title}>Visualisation des tables de multiplication</h2>
         <div className={styles.tablesContainer}>
           {tables.map((num) => (
             <div key={num} className={styles.table}>
@@ -60,54 +50,63 @@ export default function Multiplication() {
             </div>
           ))}
         </div>
+        <BackButton />
       </div>
     );
   }
 
   function renderTraining() {
+    function handleInput(value) {
+      setUserAnswer((prev) => prev + value.toString());
+    }
+
+    function handleClear() {
+      setUserAnswer("");
+    }
+
+    function handleBackspace() {
+      setUserAnswer((prev) => prev.slice(0, -1));
+    }
+
+    function handleSubmit() {
+      const correctAnswer = table * number;
+      if (parseInt(userAnswer) === correctAnswer) {
+        setMessage("Bonne réponse !");
+      } else {
+        setMessage(`Faux ! La bonne réponse était ${correctAnswer}.`);
+      }
+
+      // Génère un nouveau calcul
+      setTable(generateRandomNumber(1, 9));
+      setNumber(generateRandomNumber(0, 10));
+      setUserAnswer("");
+    }
+
     return (
       <div className={styles.training}>
-        <h2 className={styles.title}>S'entraîner sur une table</h2>
-        <label>
-          Choisissez une table :
-          <select
-            value={table}
-            onChange={(e) => setTable(parseInt(e.target.value))}
-            className={styles.select}
-          >
-            {Array.from({ length: 9 }, (_, i) => i + 1).map((num) => (
-              <option key={num} value={num}>
-                Table de {num}
-              </option>
-            ))}
-          </select>
-        </label>
+        <h2 className={styles.title}>Entraînement : Tables de Multiplication</h2>
         <p className={styles.question}>
           Combien font {table} × {number} ?
         </p>
-        <form onSubmit={checkAnswer} className={styles.form}>
-          <input
-            type="number"
-            value={userAnswer}
-            onChange={(e) => setUserAnswer(e.target.value)}
-            className={styles.input}
-            placeholder="Votre réponse"
-          />
-          <button type="submit" className={styles.button}>
-            Valider
-          </button>
-        </form>
+        <div className={styles.answer}>{userAnswer || "..."}</div>
+        <NumericPad
+          onInput={handleInput}
+          onClear={handleClear}
+          onSubmit={handleSubmit}
+          onBackspace={handleBackspace}
+        />
         {message && <p className={styles.message}>{message}</p>}
+        <BackButton />
       </div>
     );
   }
 
+  // Affichage selon le mode
   return (
     <div className={styles.container}>
-      {viewMode === "menu" && renderMenu()}
-      {viewMode === "viewAll" && renderAllTables()}
-      {viewMode === "train" && renderTraining()}
-      <BackButton />
+      {mode === "menu" && renderMenu()}
+      {mode === "viewAll" && renderAllTables()}
+      {mode === "train" && renderTraining()}
     </div>
   );
 }

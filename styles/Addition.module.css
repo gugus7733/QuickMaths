@@ -63,8 +63,82 @@
     background-color: #333333;
     padding: 15px 20px;
     border-radius: 8px;
-    margin: 20px 0;
     text-align: center;
-    width: 200px;
+    margin: 20px auto; /* Centré horizontalement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 60px;
+    cursor: pointer; /* Indique qu’il est cliquable */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .answer:hover {
+    background-color: #444444; /* Fond légèrement plus clair au survol */
+  }
+  
+  .label {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+  }
+  
+  .select {
+    margin: 10px 0;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: 1px solid #4caf50;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  /* Animations progressives */
+  .flame-3 {
+    position: relative;
+    color: #ff9800;
+    animation: flame-3 1.5s infinite;
+  }
+  
+  .flame-4 {
+    position: relative;
+    color: #ff5722;
+    animation: flame-4 1.2s infinite;
+  }
+  
+  .flame-5 {
+    position: relative;
+    color: #ff1744;
+    animation: flame-5 1s infinite;
+  }
+  
+  /* Keyframes pour les différents niveaux */
+  @keyframes flame-3 {
+    0%, 100% {
+      text-shadow: 0 0 5px #ff9800, 0 0 10px #ffb74d, 0 0 15px #ff9800;
+    }
+    50% {
+      text-shadow: 0 0 10px #ff9800, 0 0 20px #ffb74d, 0 0 25px #ff9800;
+    }
+  }
+  
+  @keyframes flame-4 {
+    0%, 100% {
+      text-shadow: 0 0 10px #ff5722, 0 0 20px #ff8a65, 0 0 30px #ff5722;
+    }
+    50% {
+      text-shadow: 0 0 20px #ff5722, 0 0 30px #ff8a65, 0 0 40px #ff5722;
+    }
+  }
+  
+  @keyframes flame-5 {
+    0%, 100% {
+      text-shadow: 0 0 15px #ff1744, 0 0 30px #ff5252, 0 0 45px #ff1744;
+    }
+    50% {
+      text-shadow: 0 0 30px #ff1744, 0 0 50px #ff5252, 0 0 60px #ff1744;
+    }
   }

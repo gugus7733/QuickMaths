@@ -59,3 +59,15 @@
     color: #4caf50;
   }
   
+  .answer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #333333;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
