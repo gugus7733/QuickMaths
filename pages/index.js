@@ -1,34 +1,14 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
-      <div>
-          <div id="text">Bonjour, appuie sur le bouton pour changer ma couleur !</div>
-          <button id="changeColorBtn">Changer la couleur</button>
-          <style jsx>{`
-              #text {
-                  font-size: 24px;
-                  color: black;
-              }
-              #changeColorBtn {
-                  padding: 10px 20px;
-                  font-size: 16px;
-                  cursor: pointer;
-                  background-color: #4CAF50;
-                  color: white;
-                  border: none;
-                  border-radius: 5px;
-              }
-              #changeColorBtn:hover {
-                  background-color: #45a049;
-              }
-          `}</style>
-          <script>
-              {`
-              document.getElementById('changeColorBtn').addEventListener('click', function () {
-                  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-                  document.getElementById('text').style.color = randomColor;
-              });
-              `}
-          </script>
-      </div>
+    <div>
+      <h1>Bienvenue sur QuickMaths !</h1>
+      <p>Choisissez un mode pour commencer :</p>
+      <ul>
+        <li><Link href="/modes/addition">Mode Addition</Link></li>
+        <li><Link href="/modes/multiplication">Mode Multiplication</Link></li>
+      </ul>
+    </div>
   );
 }
