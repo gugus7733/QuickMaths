@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
@@ -8,98 +8,82 @@ export default function Home() {
 
   // Position absolue du titre
   const [pos, setPos] = useState({ x: 100, y: 100 });
-  // Vitesse
+  // Vitesse linéaire
   const [vel, setVel] = useState({ x: 0, y: 0 });
-  // Flag poussée active
-  const [pushing, setPushing] = useState(false);
+  // Angle et vitesse de rotation
+  const [angle, setAngle] = useState(0);
+  const [angularVel, setAngularVel] = useState(0);
 
-  // Boucle d’animation : inertie + rebonds
+  // Boucle d'animation : inertie + rebonds + rotation
   useEffect(() => {
-    let frame;
-    const loop = () => {
-      // 1) Met à jour la position selon la vitesse
+    let frameId;
+    function animate() {
+      // 1) Position
       setPos(old => {
         let nx = old.x + vel.x;
         let ny = old.y + vel.y;
 
-        // Limites : largeur/hauteur de l’écran moins la taille du titre
-        const w = window.innerWidth - (titleRef.current?.offsetWidth ?? 200);
-        const h = window.innerHeight - (titleRef.current?.offsetHeight ?? 80);
+        const w = window.innerWidth - (titleRef.current?.offsetWidth || 200);
+        const h = window.innerHeight - (titleRef.current?.offsetHeight || 80);
 
         // Rebonds horizontaux
         if (nx < 0) {
           nx = 0;
-          setVel(v => ({ ...v, x: -v.x * 0.7 })); // rebond + amortissement
+          setVel(v => ({ ...v, x: -v.x * 0.6 }));
         } else if (nx > w) {
           nx = w;
-          setVel(v => ({ ...v, x: -v.x * 0.7 }));
+          setVel(v => ({ ...v, x: -v.x * 0.6 }));
         }
 
         // Rebonds verticaux
         if (ny < 0) {
           ny = 0;
-          setVel(v => ({ ...v, y: -v.y * 0.7 }));
+          setVel(v => ({ ...v, y: -v.y * 0.6 }));
         } else if (ny > h) {
           ny = h;
-          setVel(v => ({ ...v, y: -v.y * 0.7 }));
+          setVel(v => ({ ...v, y: -v.y * 0.6 }));
         }
 
         return { x: nx, y: ny };
       });
 
-      // 2) Applique une friction légère (pour conserver un peu d’inertie)
+      // 2) Rotation
+      setAngle(a => a + angularVel);
+
+      // 3) Friction (linéaire + angulaire)
       setVel(v => ({
         x: v.x * 0.99,
         y: v.y * 0.99,
       }));
+      setAngularVel(av => av * 0.99);
 
-      frame = requestAnimationFrame(loop);
-    };
-    frame = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(frame);
-  }, [vel]);
+      frameId = requestAnimationFrame(animate);
+    }
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [vel, angularVel]);
 
-  // onPointerDown n’importe où
-  function handlePointerDown() {
-    setPushing(true);
-  }
-
-  // onPointerUp n’importe où
-  function handlePointerUp() {
-    setPushing(false);
-  }
-
-  function handlePointerMove(e) {
-    if (!pushing) return;
-
-    // Vérifie si le pointeur est dans la zone du titre
+  // Un tap sur le titre => “pousse” + rotation
+  function handlePointerDown(e) {
     const rect = titleRef.current?.getBoundingClientRect();
     if (!rect) return;
 
-    const { left, right, top, bottom, width, height } = rect;
-    const inXRange = e.clientX >= left && e.clientX <= right;
-    const inYRange = e.clientY >= top && e.clientY <= bottom;
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-    // S’il est dedans, on calcule un vecteur (centre → pointeur) et on l’ajoute à la vitesse
-    if (inXRange && inYRange) {
-      const cx = left + width / 2; 
-      const cy = top  + height / 2;
+    // Vecteur (centre -> pointeur) inversé pour "pousser" le titre hors du doigt
+    const dxVel = centerX - e.clientX;
+    const dyVel = centerY - e.clientY;
+    setVel({ x: dxVel * 0.3, y: dyVel * 0.3 });
 
-      // Pousse le titre loin du pointeur
-      setVel(v => ({
-        x: v.x + (cx - e.clientX) * 0.3,
-        y: v.y + (cy - e.clientY) * 0.3,
-      }));
-    }
+    // Pour la rotation, on peut utiliser la distance horizontale
+    // (si on tape à droite du centre, ça tourne dans un sens, à gauche dans l'autre)
+    const dx = e.clientX - centerX;
+    setAngularVel(dx * 0.2);
   }
 
   return (
-    <div
-      className={styles.menuContainer}
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerUp}
-      onPointerMove={handlePointerMove}
-    >
+    <div className={styles.menuContainer}>
       <h1
         ref={titleRef}
         className={styles.menuTitle}
@@ -107,10 +91,10 @@ export default function Home() {
           position: "absolute",
           left: pos.x,
           top: pos.y,
-          userSelect: "none",
-          // Pour éviter que le texte s’affiche en surbrillance au clic
-          pointerEvents: "none" 
+          transform: `rotate(${angle}deg)`,
+          transformOrigin: "center"
         }}
+        onPointerDown={handlePointerDown}
       >
         QuickMaths
       </h1>
