@@ -14,6 +14,26 @@ export default function Home() {
   const [angle, setAngle] = useState(0);
   const [angularVel, setAngularVel] = useState(0);
 
+  // Initialisation de la position (centrée)
+  useEffect(() => {
+    const handleResize = () => {
+      if (titleRef.current) {
+        const rect = titleRef.current.getBoundingClientRect();
+        setPos({
+          x: (window.innerWidth - rect.width) / 2 - 30,
+          y: (window.innerHeight - rect.height) / 7,
+        });
+      }
+    };
+
+    // Centrer à l'initialisation
+    handleResize();
+
+    // Recentrer si la fenêtre est redimensionnée
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Boucle d'animation : inertie + rebonds + rotation
   useEffect(() => {
     let frameId;
