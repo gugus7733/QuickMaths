@@ -8,8 +8,8 @@ export default function Addition() {
   const [num1, setNum1] = useState(generateRandomNumber(difficulty));
   const [num2, setNum2] = useState(generateRandomNumber(difficulty));
   const [operation, setOperation] = useState(generateRandomOperation()); // + ou -
-  const [userAnswer, setUserAnswer] = useState("");
-  const [isCorrect, setIsCorrect] = useState(null); // null, true, or false
+  const [userAnswer, setUserAnswer] = useState("Appuyez ici");
+  const [isCorrect, setIsCorrect] = useState(true); // null, true, or false
 
   function generateRandomNumber(difficultyLevel) {
     const max = Math.pow(10, difficultyLevel) - 1; // Par exemple : 99 pour difficulté 2
@@ -83,17 +83,17 @@ export default function Addition() {
     }
   }
 
-    // Formatage propre de la question
-    function formatQuestion() {
-      if (num2 < 0) {
-        // Ajuste l'opérateur et le deuxième nombre
-        return operation === "+"
-          ? `${num1} - ${Math.abs(num2)}`
-          : `${num1} + ${Math.abs(num2)}`;
-      }
-      // Aucun ajustement nécessaire si num2 est positif
-      return `${num1} ${operation} ${num2}`;
+  // Formatage propre de la question
+  function formatQuestion() {
+    if (num2 < 0) {
+      // Ajuste l'opérateur et le deuxième nombre
+      return operation === "+"
+        ? `${num1} - ${Math.abs(num2)}`
+        : `${num1} + ${Math.abs(num2)}`;
     }
+    // Aucun ajustement nécessaire si num2 est positif
+    return `${num1} ${operation} ${num2}`;
+  }
 
   return (
     <div className={styles.container}>
