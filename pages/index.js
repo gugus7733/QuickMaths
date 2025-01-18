@@ -6,13 +6,13 @@ export default function Home() {
     <div className={styles.menuContainer}>
       <h1 className={styles.menuTitle}>Bienvenue sur QuickMaths</h1>
       <Link href="/modes/addition">
-        <button className={styles.menuButton}>Mode Addition</button>
+        <button className={styles.menuButton}>Additions</button>
       </Link>
       <Link href="/modes/multiplication">
         <button className={styles.menuButton}>Tables de Multiplication</button>
       </Link>
       <Link href="/modes/randomMultiplication">
-        <button className={styles.menuButton}>Mode Multiplications</button>
+        <button className={styles.menuButton}>Multiplications</button>
       </Link>
     </div>
   );

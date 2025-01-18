@@ -9,7 +9,7 @@ export default function Addition() {
   const [num2, setNum2] = useState(generateRandomNumber(difficulty));
   const [operation, setOperation] = useState(generateRandomOperation()); // + ou -
   const [userAnswer, setUserAnswer] = useState("");
-  const [message, setMessage] = useState("");
+  const [isCorrect, setIsCorrect] = useState(null); // null, true, or false
 
   function generateRandomNumber(difficultyLevel) {
     const max = Math.pow(10, difficultyLevel) - 1; // Par exemple : 99 pour difficulté 2
@@ -30,57 +30,70 @@ export default function Addition() {
     setNum2(generateRandomNumber(newDifficulty));
     setOperation(generateRandomOperation());
     setUserAnswer("");
-    setMessage("");
+    setIsCorrect(null);
   }
 
   function toggleAnswerSign() {
-    setUserAnswer((prev) =>
-      prev.startsWith("-") ? prev.slice(1) : `-${prev}`
-    );
+    if (isCorrect !== null) {
+      setUserAnswer("-")
+      setIsCorrect(null);
+    } else {
+      setUserAnswer((prev) =>
+        prev.startsWith("-") ? prev.slice(1) : `-${prev}`
+      );
+    }
   }
 
-  function handleInput(value) {
-    setUserAnswer((prev) => prev + value.toString());
-  }
 
   function handleClear() {
     setUserAnswer("");
+    setIsCorrect(null);
   }
 
   function handleBackspace() {
     setUserAnswer((prev) => prev.slice(0, -1));
+    setIsCorrect(null);
   }
+
 
   function handleSubmit() {
     const correctAnswer =
       operation === "+"
         ? num1 + num2
         : num1 - num2;
-
-    if (parseInt(userAnswer) === correctAnswer) {
-      setMessage("Bonne réponse !");
-    } else {
-      setMessage(`Faux ! La bonne réponse était ${correctAnswer}.`);
-    }
-
-    // Régénère une nouvelle question
+    const isAnswerCorrect = parseInt(userAnswer) === correctAnswer;
+  
+    setIsCorrect(isAnswerCorrect);
+    // On affiche la réponse (juste ou fausse)
+    setUserAnswer(correctAnswer.toString());
+  
+    // On génère directement la prochaine question
     setNum1(generateRandomNumber(difficulty));
     setNum2(generateRandomNumber(difficulty));
     setOperation(generateRandomOperation());
-    setUserAnswer("");
+  }
+  
+  function handleInput(value) {
+    // Si on sort d’une validation, on réinitialise
+    if (isCorrect !== null) {
+      setUserAnswer(value.toString());
+      setIsCorrect(null);
+    } else {
+      setUserAnswer(prev => prev + value.toString());
+    }
   }
 
-  // Formatage propre de la question
-  function formatQuestion() {
-    if (num2 < 0) {
-      // Ajuste l'opérateur et le deuxième nombre
-      return operation === "+"
-        ? `${num1} - ${Math.abs(num2)}`
-        : `${num1} + ${Math.abs(num2)}`;
+    // Formatage propre de la question
+    function formatQuestion() {
+      if (num2 < 0) {
+        // Ajuste l'opérateur et le deuxième nombre
+        return operation === "+"
+          ? `${num1} - ${Math.abs(num2)}`
+          : `${num1} + ${Math.abs(num2)}`;
+      }
+      // Aucun ajustement nécessaire si num2 est positif
+      return `${num1} ${operation} ${num2}`;
     }
-    // Aucun ajustement nécessaire si num2 est positif
-    return `${num1} ${operation} ${num2}`;
-  }
 
   return (
     <div className={styles.container}>
@@ -110,8 +123,16 @@ export default function Addition() {
         Combien font {formatQuestion()} ?
       </p>
 
-      <div className={styles.answer} onClick={toggleAnswerSign}>
-        {userAnswer || "Cliquez ici"}
+      <div
+        className={`${styles.answer} ${
+          isCorrect === true
+            ? styles.correct
+            : isCorrect === false
+            ? styles.incorrect
+            : ""
+        }`} onClick={toggleAnswerSign}
+      >
+        {userAnswer || "..."}
       </div>
 
       <NumericPad
@@ -121,7 +142,6 @@ export default function Addition() {
         onBackspace={handleBackspace}
       />
 
-      {message && <p className={styles.message}>{message}</p>}
       <BackButton />
     </div>
   );

@@ -9,7 +9,7 @@ export default function RandomMultiplication() {
   const [num2, setNum2] = useState(1);
   const [operation, setOperation] = useState("*"); // Par défaut multiplication
   const [userAnswer, setUserAnswer] = useState("");
-  const [message, setMessage] = useState("");
+  const [isCorrect, setIsCorrect] = useState(null); // null, true, or false
 
   // Génère un type d'opération aléatoire (* ou /)
   function generateRandomOperation() {
@@ -41,7 +41,6 @@ export default function RandomMultiplication() {
     setOperation(newOperation);
     setNum1(newNum1);
     setNum2(newNum2);
-    setUserAnswer("");
   }
 
   // Change le niveau de difficulté et génère une nouvelle question immédiatement
@@ -52,33 +51,39 @@ export default function RandomMultiplication() {
   }
 
   function handleInput(value) {
-    setUserAnswer((prev) => prev + value.toString());
-  }
+      // Si on sort d’une validation, on réinitialise
+      if (isCorrect !== null) {
+        setUserAnswer(value.toString());
+        setIsCorrect(null);
+      } else {
+        setUserAnswer(prev => prev + value.toString());
+      }
+    }
 
   function handleClear() {
     setUserAnswer("");
+    setIsCorrect(null);
   }
 
   function handleBackspace() {
     setUserAnswer((prev) => prev.slice(0, -1));
+    setIsCorrect(null);
   }
 
   function handleSubmit() {
     const correctAnswer =
       operation === "*" ? num1 * num2 : Math.floor(num1 / num2);
 
-    if (parseInt(userAnswer) === correctAnswer) {
-      setMessage("Bonne réponse !");
-    } else {
-      setMessage(`Faux ! La bonne réponse était ${correctAnswer}.`);
-    }
+    const isAnswerCorrect = parseInt(userAnswer) === correctAnswer;
+    setIsCorrect(isAnswerCorrect);
+    setUserAnswer(correctAnswer.toString());
 
     generateQuestion();
   }
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Mode Multiplications</h1>
+      <h1 className={styles.title}>Multiplications</h1>
 
       {/* Menu déroulant pour la difficulté avec effet de flamme */}
       <label
@@ -104,7 +109,17 @@ export default function RandomMultiplication() {
         Combien font {num1} {operation} {num2} ?
       </p>
 
-      <div className={styles.answer}>{userAnswer || "..."}</div>
+      <div
+        className={`${styles.answer} ${
+          isCorrect === true
+            ? styles.correct
+            : isCorrect === false
+            ? styles.incorrect
+            : ""
+        }`} onClick={handleClear}
+      >
+        {userAnswer || "..."} 
+      </div>
 
       <NumericPad
         onInput={handleInput}
@@ -113,7 +128,6 @@ export default function RandomMultiplication() {
         onBackspace={handleBackspace}
       />
 
-      {message && <p className={styles.message}>{message}</p>}
       <BackButton />
     </div>
   );

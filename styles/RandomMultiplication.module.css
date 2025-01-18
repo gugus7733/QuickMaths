@@ -27,20 +27,24 @@
   padding: 15px 20px;
   border-radius: 8px;
   text-align: center;
-  margin: 20px 0;
-  width: 200px;
+  margin: 20px auto;
+  width: 250px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.message {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #4caf50; /* Vert pour succès */
-  transition: all 0.3s ease;
+.answer.correct {
+  background-color: #4caf50;
+  color: #ffffff;
 }
 
-.message.error {
-  color: #ff5252; /* Rouge pour erreur */
+.answer.incorrect {
+  background-color: #ff5252;
+  color: #ffffff;
+}
+
+.answer:hover {
+  background-color: #444444; /* Fond légèrement plus clair au survol */
 }
 
 .label {
