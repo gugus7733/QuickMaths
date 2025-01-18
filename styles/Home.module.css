@@ -1,44 +1,91 @@
 .menuContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(145deg, #121212, #1e1e1e);
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    padding: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(145deg, #121212, #1e1e1e);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 0px;
+}
   
-  .menuTitle {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #4caf50;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+.menuTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(90deg, #ff5722, #4caf50, #2196f3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; /* Utilise le gradient comme couleur */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation: gradientShift 3s infinite, popIn 1s ease-out, colorChange 5s infinite;
+  margin-bottom: 150px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Animation pour faire bouger le gradient */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .menuButton {
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    margin: 10px 0;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .menuButton:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  100% {
+    background-position: 0% 50%;
   }
-  
-  .menuButton:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation de zoom progressif */
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
   }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animation pour changer la couleur dynamiquement */
+@keyframes colorChange {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.menuButton {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 1.5rem;
+}
+
+.menuButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.menuButton:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
   

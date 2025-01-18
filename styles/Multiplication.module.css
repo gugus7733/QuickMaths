@@ -1,94 +1,144 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #121212;
-    color: #ffffff;
-    padding: 20px;
-  }
-  
-  .menu {
-    text-align: center;
-  }
-  
-  .title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .button {
-    background-color: #4caf50;
-    color: #ffffff;
-    border: none;
-    padding: 15px 30px;
-    margin: 10px;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-  }
-  
-  .allTables {
-    text-align: center;
-  }
-  
-  .tablesContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .table {
-    background-color: #1e1e1e;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .tableTitle {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .row {
-    font-size: 1rem;
-  }
-  
-  .training {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre horizontalement */
-    justify-content: center; /* Centre verticalement */
-    text-align: center;
-  }
-  
-  .question {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .answer {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #333333;
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin: 20px 0;
-    text-align: center;
-    width: 200px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .message {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #4caf50;
-  }
-  
+  display: flex;
+  flex-direction: column; /* Arrange les éléments en colonne */
+  justify-content: center; /* Centrage vertical */
+  align-items: center; /* Centrage horizontal */
+  height: 100vh; /* Pleine hauteur */
+  background-color: #121212; /* Thème sombre */
+  color: #ffffff;
+  padding: 0px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrage vertical */
+  align-items: center; /* Centrage horizontal */
+  height: 100vh; /* Pleine hauteur pour centrer verticalement */
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1.5rem;
+}
+
+.button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.allTablesContainer {
+  padding: 20px;
+  text-align: center;
+  background-color: #121212;
+  color: #ffffff;
+  overflow-y: scroll; /* Maintient le défilement vertical */
+  height: 100vh;
+  scrollbar-width: none; /* Cache la barre de défilement sur Firefox */
+}
+
+.allTablesContainer::-webkit-scrollbar {
+  display: none; /* Cache la barre de défilement sur Chrome/Safari */
+}
+
+.tables {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes fixes */
+  gap: 30px 30px; /* Espacement entre les tables */
+  justify-content: center; /* Centre les tables si elles prennent moins de place */
+  margin: 0 auto; /* Centre la grille horizontalement */
+}
+
+.table {
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto; /* Centre chaque table si elle est seule */
+}
+
+.row {
+  font-size: 1.3rem;
+  margin: 5px 0;
+}
+
+.tableTitle {
+  font-size: 1.5rem;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: #4caf50;
+}
+
+
+.training {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement */
+  text-align: center;
+}
+
+.question {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.answer {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #333333;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px auto;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.answer.correct {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.answer.incorrect {
+  background-color: #ff5252;
+  color: #ffffff;
+}
+
+.answer:hover {
+  background-color: #444444; /* Fond légèrement plus clair au survol */
+}
+
+.label {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.select {
+  margin: 10px 0;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: 1px solid #4caf50;
+  border-radius: 5px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
