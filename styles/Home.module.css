@@ -101,9 +101,10 @@
 .greeting {
   font-size: 2rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #4caf50;
   margin-bottom: 0px;
 }
+
 
 .username {
   font-size: 2rem;

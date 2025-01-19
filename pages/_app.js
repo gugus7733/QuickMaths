@@ -6,7 +6,6 @@ function MyApp({ Component, pageProps }) {
   const [userColor, setUserColor] = useState("#ffffff");
 
   useEffect(() => {
-    console.log("useEffect a été djiiiiiéclenché !");
     const storedUsername = localStorage.getItem("username");
     const storedColor = localStorage.getItem("userColor");
     if (storedUsername) setUsername(storedUsername);
@@ -25,11 +24,11 @@ function MyApp({ Component, pageProps }) {
     <div>
       {!username ? (
         <div className="username-form">
-          <h1>Bienvenue sur QuickMaths !</h1>
+          <div className="greeting">Bienvenue sur QuickMaths !</div>
           <input
             type="text"
             placeholder="Votre pseudo"
-            maxLength="16" // Limite la longueur à 16 caractères
+            maxLength="14" // Limite la longueur à 16 caractères
             id="username-input"
             onKeyDown={(e) => {
               if (e.key === "Enter" && e.target.value.trim()) {

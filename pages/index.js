@@ -134,9 +134,9 @@ export default function Home({ username, userColor }) {
         {showOptions && (
           <div className={styles.options}>
             <button onClick={handlePersonalize}>Personnaliser le pseudo</button>
-            <button onClick={() => alert("Placeholder pour les scores")}>
-              Afficher mes scores
-            </button>
+            <Link href="./modes/stats">
+              <button>Afficher mes scores</button>
+            </Link>
           </div>
         )}
         <h1 className={styles.dynamicTitle}></h1>

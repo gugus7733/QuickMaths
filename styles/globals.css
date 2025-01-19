@@ -15,6 +15,13 @@ body {
     --error-color: #ff5252;
 }
 
+.greeting {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 30px;
+}
+
 .username-form {
   display: flex;
   flex-direction: column;
