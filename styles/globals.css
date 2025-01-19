@@ -14,3 +14,36 @@ body {
     --accent-color: #4caf50;
     --error-color: #ff5252;
 }
+
+.username-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding-left: 20px; /* Ajoute un padding pour éviter les débordements */
+  padding-right: 20px; /* Ajoute un padding pour éviter les débordements */
+  padding-bottom: 0px;
+  text-align: center; /* Centre le texte */
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.username-form h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+.username-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #4caf50;
+  border-radius: 5px;
+  width: 100%; /* Prend toute la largeur disponible */
+  max-width: 300px; /* Limite la largeur pour grands écrans */
+  text-align: center;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+

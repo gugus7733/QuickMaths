@@ -80,7 +80,6 @@
 }
 
 .menuButton:hover {
-  transform: scale(1.05);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -88,4 +87,48 @@
   transform: scale(0.98);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-  
+
+
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.greeting {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0px;
+}
+
+.username {
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.options {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.options button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.options button:hover {
+  background-color: #45a049;
+}
+

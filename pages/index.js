@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Home({ username, userColor }) {
   const titleRef = useRef(null);
 
   // Position absolue du titre
@@ -13,6 +13,8 @@ export default function Home() {
   // Angle et vitesse de rotation
   const [angle, setAngle] = useState(0);
   const [angularVel, setAngularVel] = useState(0);
+  // Pour afficher les options
+  const [showOptions, setShowOptions] = useState(false);
 
   // Initialisation de la position (centrée)
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function Home() {
         const rect = titleRef.current.getBoundingClientRect();
         setPos({
           x: (window.innerWidth - rect.width) / 2 - 30,
-          y: (window.innerHeight - rect.height) / 7,
+          y: (window.innerHeight - rect.height) / 2 - 80,
         });
       }
     };
@@ -102,8 +104,46 @@ export default function Home() {
     setAngularVel(dx * 0.2);
   }
 
+  function handleShowOptions() {
+    setShowOptions((prev) => !prev);
+  }
+
+  function handlePersonalize() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("userColor");
+    window.location.reload();
+  }
+
   return (
     <div className={styles.menuContainer}>
+
+      <div className={styles.welcome}>
+        <p className={styles.greeting}>
+          Bonjour{" "}
+          <span
+            className={styles.username}
+            style={{ color: userColor }}
+            onClick={handleShowOptions}
+          >
+            {username}
+          </span>
+          ,
+          <br />
+          bienvenue sur
+        </p>
+        {showOptions && (
+          <div className={styles.options}>
+            <button onClick={handlePersonalize}>Personnaliser le pseudo</button>
+            <button onClick={() => alert("Placeholder pour les scores")}>
+              Afficher mes scores
+            </button>
+          </div>
+        )}
+        <h1 className={styles.dynamicTitle}></h1>
+        <h1 className={styles.dynamicTitle}></h1>
+        <h1 className={styles.dynamicTitle}></h1>
+        </div>
+
       <h1
         ref={titleRef}
         className={styles.menuTitle}
