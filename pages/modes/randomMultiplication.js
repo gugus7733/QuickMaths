@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import NumericPad from "../../components/NumericPad";
 import BackButton from "../../components/BackButton";
 import styles from "../../styles/RandomMultiplication.module.css";
+import { updateScore } from "../../firebase";
 
-export default function RandomMultiplication() {
+export default function RandomMultiplication({ username }) {
   const [difficulty, setDifficulty] = useState(1); // Niveau de difficulté par défaut
   const [num1, setNum1] = useState(1);
   const [num2, setNum2] = useState(1);
@@ -75,6 +76,11 @@ export default function RandomMultiplication() {
       operation === "*" ? num1 * num2 : Math.floor(num1 / num2);
 
     const isAnswerCorrect = parseInt(userAnswer) === correctAnswer;
+
+    if (isAnswerCorrect) {
+      updateScore(username, "multiplications", difficulty); // Incrémente le score
+    }
+
     setIsCorrect(isAnswerCorrect);
     setUserAnswer(correctAnswer.toString());
 

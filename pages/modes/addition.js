@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import NumericPad from "../../components/NumericPad";
 import BackButton from "../../components/BackButton";
 import styles from "../../styles/Addition.module.css";
+import { updateScore } from "../../firebase";
 
-export default function Addition() {
+export default function Addition({ username }) {
   const [difficulty, setDifficulty] = useState(1); // Niveau de difficulté par défaut
   const [num1, setNum1] = useState(generateRandomNumber(difficulty));
   const [num2, setNum2] = useState(generateRandomNumber(difficulty));
@@ -62,6 +63,10 @@ export default function Addition() {
         ? num1 + num2
         : num1 - num2;
     const isAnswerCorrect = parseInt(userAnswer) === correctAnswer;
+
+    if (isAnswerCorrect) {
+      updateScore(username, "additions", difficulty); // Incrémente le score
+    }
   
     setIsCorrect(isAnswerCorrect);
     // On affiche la réponse (juste ou fausse)

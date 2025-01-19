@@ -6,10 +6,12 @@ function MyApp({ Component, pageProps }) {
   const [userColor, setUserColor] = useState("#ffffff");
 
   useEffect(() => {
+    console.log("useEffect a été djiiiiiéclenché !");
     const storedUsername = localStorage.getItem("username");
     const storedColor = localStorage.getItem("userColor");
     if (storedUsername) setUsername(storedUsername);
     if (storedColor) setUserColor(storedColor);
+    
   }, []);
 
   function handleSetUsername(name, color) {

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import BackButton from "../../components/BackButton";
 import NumericPad from "../../components/NumericPad";
 import styles from "../../styles/Multiplication.module.css";
+import { updateScore } from "../../firebase";
 
-export default function Multiplication() {
+export default function Multiplication({ username }) {
   const [mode, setMode] = useState("menu"); // Modes possibles : "menu", "viewAll", "train"
   const [table, setTable] = useState(generateRandomNumber(1, 9)); // Table aléatoire pour l'entraînement
   const [number, setNumber] = useState(generateRandomNumber(0, 10));
@@ -81,6 +82,10 @@ export default function Multiplication() {
       const isAnswerCorrect = parseInt(userAnswer) === correctAnswer;
       setIsCorrect(isAnswerCorrect);
       setUserAnswer(correctAnswer.toString());
+
+      if (isAnswerCorrect) {
+        updateScore(username, "tables", 1); // Incrémente le score
+      }
 
       // Génère un nouveau calcul
       setTable(generateRandomNumber(1, 9));
