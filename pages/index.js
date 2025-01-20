@@ -23,7 +23,7 @@ export default function Home({ username, userColor }) {
         const rect = titleRef.current.getBoundingClientRect();
         setPos({
           x: (window.innerWidth - rect.width) / 2 - 30,
-          y: (window.innerHeight - rect.height) / 2 - 80,
+          y: (window.innerHeight - rect.height) / 2 - 150,
         });
       }
     };
@@ -167,6 +167,9 @@ export default function Home({ username, userColor }) {
       </Link>
       <Link href="/modes/randomMultiplication">
         <button className={styles.menuButton}>Multiplications</button>
+      </Link>
+      <Link href="/modes/leaderboards">
+        <button className={styles.menuButton}>Leaderboards</button>
       </Link>
     </div>
   );

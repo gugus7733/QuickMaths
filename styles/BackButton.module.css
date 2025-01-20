@@ -12,15 +12,15 @@
   align-self: center; /* Centre horizontalement dans un conteneur flex */
 }
   
-  .icon {
-    font-size: 1.8rem; /* Taille élégante pour l'icône */
-  }
-  
-  .backButton:hover {
-    background-color: #ff7b7b;
-    transform: scale(1.05);
-  }
-  
-  .backButton:active {
-    transform: scale(0.95);
-  }
+.icon {
+  font-size: 1.8rem; /* Taille élégante pour l'icône */
+}
+
+.backButton:hover {
+  background-color: #ff7b7b;
+  transform: scale(1.05);
+}
+
+.backButton:active {
+  transform: scale(0.95);
+}

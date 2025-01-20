@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    flex-direction: column; /* Arrange les éléments en colonne */
+    justify-content: center; /* Centrage vertical */
+    align-items: center; /* Centrage horizontal */
+    height: 100vh; /* Pleine hauteur */
+    background-color: #121212; /* Thème sombre */
+    color: #ffffff;
+    padding: 0px;
+  }
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+.fancyTitle {
+font-size: 3rem;
+font-weight: bold;
+text-align: center;
+background: linear-gradient(90deg, #ff5722, #4caf50, #2196f3);
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent; /* Utilise le gradient comme couleur */
+text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+animation: gradientShift 3s infinite, popIn 1s ease-out, colorChange 3s infinite;
+margin-bottom: 0px;
+font-family: "Poppins", sans-serif;
+}
+
+/* Animation pour faire bouger le gradient */
+@keyframes gradientShift {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+}
+
+/* Animation de zoom progressif */
+@keyframes popIn {
+0% {
+    transform: scale(0.8);
+    opacity: 0;
+}
+100% {
+    transform: scale(1);
+    opacity: 1;
+}
+}
+
+/* Animation pour changer la couleur dynamiquement */
+@keyframes colorChange {
+0% {
+    filter: hue-rotate(0deg);
+}
+50% {
+    filter: hue-rotate(180deg);
+}
+100% {
+    filter: hue-rotate(360deg);
+}
+}
+
+.GreenText {
+    font-size: 1.8rem;
+    color: #4caf50;
+    margin-bottom: 0px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    max-width: 500px;
+}
+
+.table th,
+.table td {
+border: 1px solid #4caf50;
+padding: 10px;
+text-align: center;
+font-size: 1.2rem;
+}
+
+.table th {
+background-color: #4caf50;
+color: #ffffff;
+}
+
+.table tr:nth-child(even) {
+background-color: #2b2b2b;
+}
+
+.table tr:nth-child(odd) {
+background-color: #1e1e1e;
+}
