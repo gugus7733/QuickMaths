@@ -23,7 +23,7 @@ export default function Home({ username, userColor }) {
         const rect = titleRef.current.getBoundingClientRect();
         setPos({
           x: (window.innerWidth - rect.width) / 2 - 30,
-          y: (window.innerHeight - rect.height) / 2 - 150,
+          y: (window.innerHeight - rect.height) / 2 - 120,
         });
       }
     };
