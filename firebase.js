@@ -75,7 +75,11 @@ export async function updateScore(pseudo, mode, difficulty, increment = 1) {
           multiplications: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
           tables: 0,
         };
-        newData[mode][difficulty] = increment;
+        if (mode === "tables") {
+          newData[mode] = increment;
+        } else {
+          newData[mode][difficulty] = increment;
+        }
         await setDoc(userRef, newData);
       }
     } catch (error) {
